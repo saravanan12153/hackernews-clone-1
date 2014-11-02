@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html>
+  <head>
+    <title>{% block head_title %}Hacker news{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+    <link rel="stylesheet" type="text/css" hef="{{STATIC_URL}}css/style.css"
+                                   
+  </head>
+  <body>
+    <div id="navigation">
+    </div>
+
+    <div id="header">
+      <div class="row">	
+	<div id="logo">
+	  <a href="/"><img src="{% static "img/y18.gif" %}"></a>
+	</div>
+	<div id="title">
+	  <h1>{% block title %}Hacker News{% endblock %}</h1>
+	</div>
+      </div>
+    </div>
+
+    <div id="main-content">          
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <div id="footer">
+
+    </div>
+    
+  </body>
+</html>

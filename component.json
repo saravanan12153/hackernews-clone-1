@@ -1,0 +1,10 @@
+{
+  "name" : "hackernews-clone",
+  "version": "0.1",
+  "dependencies" : {
+    "bootstrap": "latest"
+  },
+  "install" : {
+    "path": "hackernews/static/libs"
+  }
+}

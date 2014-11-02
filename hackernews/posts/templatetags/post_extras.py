@@ -13,7 +13,7 @@ def post_age(created):
     age_in_minutes = int((now - created).total_seconds())/60
 
     if age_in_minutes < 3:
-	age_string = "just now"
+	return "just now"
     elif age_in_minutes < 60:
 	value = age_in_minutes
 	precision = "minute"

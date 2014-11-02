@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
+from slugify import UniqueSlugify
 import datetime
 from urlparse import urlparse
 
@@ -25,6 +25,7 @@ class Post(models.Model):
     def save(self):
 	#super(Post, self).save()
 	date = datetime.date.today()
+	slugify = UniqueSlugify()
 	self.slug = "%i/%i/%i/%s" % (
 	    date.year, date.month, date.day, slugify(self.title)
 	)

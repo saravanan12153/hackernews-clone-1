@@ -91,3 +91,30 @@ ol {
   font-size: 7pt;
   color: #828282;
 }
+/************************************************/
+
+/****************** VOTING **********************/
+.post-voting {
+  float: left;
+  margin-right: 1px;
+  padding: 0px;
+  position: relative;
+  left: 1px;
+}
+.vote { 
+  height: 10px;
+  width: 10px;
+  &.upvote {
+    position: relative;
+    top: -3px;
+    background: url(/static/img/upvote.gif) no-repeat;
+  }
+
+  &.downvote {
+    position: relative;
+    top: -2px;
+    background: url(/static/img/downvote.gif) no-repeat;
+  }
+}
+
+

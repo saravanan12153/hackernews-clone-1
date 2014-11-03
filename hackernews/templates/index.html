@@ -1,23 +1,7 @@
 {% extends 'includes/base.html' %}
 
-{% load post_extras %}
-
 
 {% block content %}
-
-{% if top_ranked_posts %}  
-<ol> 
-  {% for post in top_ranked_posts %}
-  <li> 
-    <p class="post-title" >
-      <a href="{{post.url}}">{{post.title}}</a><span class="post-domain"> ({{post.domain}}) </span>
-    </p> 
-    <p class="post-info" >
-      {{ post.points }} points by {{post.poster.username}} {{ post.created|post_age}}
-    </p>
-  </li>
-  {% endfor %}
-</ol>
-{% endif %}
+{% include 'posts/top_ranked_list.html' %} 
 {% endblock %}
 

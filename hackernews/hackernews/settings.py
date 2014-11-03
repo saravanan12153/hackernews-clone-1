@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-
+import os 
+import sys
+from os.path import join 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +28,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True   
 
-from os.path import join     
+
 TEMPLATE_DIRS = (
     join(BASE_DIR, 'templates'),
 )
@@ -38,14 +40,43 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',    
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'braces',
     'crispy_forms',
+    # django-allauth
+    'allauth',
+    'allauth.account',
+     #'allauth.socialaccount',
+    
     'posts',
+    'profiles',
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+
+    # django-allauth specifics
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,28 +104,8 @@ DATABASES = {
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-
-# CRISPY_FORMS #
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+try:
+    from local_settings import *
+except ImportError:
+    pass
+    

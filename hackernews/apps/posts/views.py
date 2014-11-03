@@ -36,10 +36,9 @@ class PostCreate(CreateView, LoginRequiredMixin):
 
     def get_success_url(self):
         return reverse('index')
-
 	
-    def form_valid(self, form):
-	#form.instance.Poster = self.request.user
+    def form_valid(self, form):	
+	form.instance.poster = self.request.user
         form.save()
         return super(PostCreate, self).form_valid(form)
 

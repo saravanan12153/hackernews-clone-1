@@ -15,15 +15,19 @@ class VoteManager(models.Manager):
         Get a dictionary containing the total score for ``obj`` and
         the number of votes it's received.
         """
-        ctype = ContentType.objects.get_for_model(obj)
-        result = self.filter(
-            object_id=obj._get_pk_val(),
-            content_type=ctype
-        ).aggregate(
-            score=Sum('vote'),
-            num_votes=Count('vote')
-        )
-
+	
+	if hasattr(obj, 'points') and hasattr(obj, 'total_votes') :
+	    result = { 'score': obj.points, 'num_votes': obj.total_votes }
+	else:	    
+	    ctype = ContentType.objects.get_for_model(obj)
+	    result = self.filter(
+		object_id=obj._get_pk_val(),
+		content_type=ctype
+	    ).aggregate(
+		score=Sum('vote'),
+		num_votes=Count('vote')
+	    )
+	    
         if result['score'] is None:
             result['score'] = 0
         return result
@@ -76,6 +80,11 @@ class VoteManager(models.Manager):
             else:
                 v.vote = vote
                 v.save()
+		
+		obj.total_votes = obj.total_votes + 1
+		obj.points = obj.points + vote
+		obj.save()
+		
         except models.ObjectDoesNotExist:
             if not ZERO_VOTES_ALLOWED and vote == 0:
                 return

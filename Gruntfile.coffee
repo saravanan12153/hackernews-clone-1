@@ -1,50 +1,57 @@
 module.exports = (grunt) ->
- 
+  paths = 
+		compass:
+			files: 'staticproject/sass/**/*.scss'
+			src: 'staticproject/sass/'
+			dest: 'hackernews/static/css'
+		coffee:
+			cwd: 'staticproject/coffee'
+			src: '**/*.coffee'
+			dest: 'hackernews/static/js'
+      
   # configuration
-  grunt.initConfig
- 
+  grunt.initConfig 
     # grunt sass
-    sass:
-      compile:
-        options:
-          style: 'expanded'
-        files: [
-          expand: true
-          cwd: 'staticproject/sass'
-          src: ['**/*.scss']
-          dest: 'hackernews/static/css'
-          ext: '.css'
-        ]
+
+    compass: 
+      dev: 
+        options: 
+          sassDir: paths.compass.src
+          cssDir: paths.compass.dest
+          imagesPath: 'hackernews/static/img'
+          noLineComments: false
+          outputStyle: 'compressed'               
+            
  
     # grunt coffee
     coffee:
       compile:
         expand: true
-        cwd: 'staticproject/coffee'
-        src: ['**/*.coffee']
-        dest: 'hackernews/static/js'
-        ext: '.js'
+        cwd: paths.coffee.cwd
+        src: paths.coffee.src
+        dest: paths.coffee.dest 
+        ext: '.js' 
         options:
           bare: true
           preserve_dirs: true
  
     # grunt watch (or simply grunt)
     watch:
+      compass: 
+        files: paths.compass.files
+        tasks: ['compass:dev']          
       html:
         files: ['**/*.html']
-      sass:
-        files: '<%= sass.compile.files[0].src %>'
-        tasks: ['sass']
       coffee:
-        files: '<%= coffee.compile.src %>'
+        files: paths.coffee.cwd+'/'+paths.coffee.src
         tasks: ['coffee']
       options:
         livereload: true
  
   # load plugins
-  grunt.loadNpmTasks 'grunt-contrib-sass'
+
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
- 
+  grunt.loadNpmTasks 'grunt-contrib-compass'
   # tasks
-  grunt.registerTask 'default', ['sass', 'coffee', 'watch']
+  grunt.registerTask 'default', ['coffee', 'watch']

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from slugify import UniqueSlugify
 from uuslug import slugify
 import datetime
 from urlparse import urlparse

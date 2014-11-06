@@ -7,8 +7,8 @@
   <li>  
     <div class="post-title" >  
       <div class="post-voting">
-	<div class="vote upvote"></div>
-	<div class="vote downvote"></div>
+	<a class="vote upvote" href="#" onclick="vote('{{ post.id }}', 'up');"></a>
+	<a class="vote downvote" href="#" onclick="vote('{{ post.id }}', 'down');"></a>
       </div>
       <a href="{{post.url}}">{{post.title}}</a><span class="post-domain"> ({{post.domain}}) </span>
     </div> 

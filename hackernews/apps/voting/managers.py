@@ -80,9 +80,14 @@ class VoteManager(models.Manager):
             else:
                 v.vote = vote
                 v.save()
-		
-		obj.total_votes = obj.total_votes + 1
-		obj.points = obj.points + vote
+
+		print("alibaba")
+		if not obj.total_votes:
+		    obj.total_votes = 1
+		    obj.total_points = 0
+		else:		    
+		    obj.total_votes = obj.total_votes + 1
+		    obj.points = obj.points + vote
 		obj.save()
 		
         except models.ObjectDoesNotExist:

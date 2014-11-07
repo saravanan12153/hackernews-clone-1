@@ -13,7 +13,7 @@
       <a href="{{post.url}}">{{post.title}}</a><span class="post-domain"> ({{post.domain}}) </span>
     </div> 
     <p class="post-info" >
-      {{ post.points }} points by {{post.poster.username}} {{ post.created|post_age}}
+      <span id="score">{{ post.points }} </span> points (<span id="total_votes">{{post.total_votes}}</span>) by {{post.poster.username}} {{ post.created|post_age}}
     </p> 
   </li>
   {% endfor %}

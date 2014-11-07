@@ -9,7 +9,6 @@ from .forms import PostForm
 
 ############ TOP SCORE FRONT END ##############
 
-
 def top_score_posts(top=100, consider=180):
     latest_posts = Post.objects.order_by('-created')[:consider]
     ranked_posts = sorted([ (post.scores, post) for post in latest_posts ], reverse=True)

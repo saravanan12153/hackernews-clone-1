@@ -1,12 +1,11 @@
 from django.shortcuts import render
 
-from django.views.generic import ListView, UpdateView, DeleteView, CreateView
+from django.views.generic import ListView, UpdateView, DeleteView, CreateView, DetailView
 from braces.views import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 
 from .models import Post
-from .forms import PostForm
-
+from .forms import PostForm #, CommentForm
 ############ TOP SCORE FRONT END ##############
 
 def top_score_posts(top=100, consider=180):
@@ -22,6 +21,15 @@ class TopScorePostListView(ListView):
 	return top_score_posts()
 	
 ###################### FORMS  ########################
+class PostDetail(DetailView):
+    model = Post
+    template_name = "posts/post_detail.html" 
+
+    def get_context_data(self, **kwargs):
+	context = super(PostDetail,self).get_context_data(**kwargs)
+#	context['comment-form'] = CommentForm()  
+	return context
+
 class PostCreate(CreateView, LoginRequiredMixin):
     form_class = PostForm
     template_name = 'posts/forms/create_form.html'
@@ -33,7 +41,6 @@ class PostCreate(CreateView, LoginRequiredMixin):
 	form.instance.poster = self.request.user
         form.save()
         return super(PostCreate, self).form_valid(form)
-
     #model = Post
     
 class PostUpdate(UpdateView, LoginRequiredMixin):

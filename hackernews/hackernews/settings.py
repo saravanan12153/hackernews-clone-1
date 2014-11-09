@@ -56,6 +56,10 @@ INSTALLED_APPS = (
     'voting',
     'posts',
     'profiles',
+
+    'fluent_comments',
+    'threadedcomments',
+    'django.contrib.comments',
 )
 
 AUTHENTICATION_BACKENDS = (

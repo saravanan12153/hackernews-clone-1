@@ -1,0 +1,22 @@
+{% extends "includes/base.html" %}
+
+{% load comments %}
+
+{% block content %}
+<div class="post-detail">
+<div class = "containter">
+  <div class="row">
+    {% include 'posts/post_meta.html' %} 
+  </div>
+
+  {% if user.is_authenticated %} 
+  <div class="row"> 
+    {% render_comment_form for post %}
+  </div>
+  {% endif %}
+  <div class="row">
+    {% render_comment_list for post %}
+  </div>
+</div>
+</div>
+{% endblock %}

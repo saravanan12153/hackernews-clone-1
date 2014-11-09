@@ -1,0 +1,15 @@
+{% load post_extras %}
+{% load comments %}
+
+<div class="post-title" >  
+  <div class="post-voting"> 
+    <a class="vote upvote" href="#" onclick="vote('{{ post.id }}', 'up');"></a>
+    <a class="vote downvote" href="#" onclick="vote('{{ post.id }}', 'down');"></a>
+  </div>
+  <a href="{{post.url}}">{{post.title}}</a><span class="post-domain"> ({{post.domain}}) </span>
+</div> 
+<p class="post-info" >
+  {% get_comment_count for post as comment_count %}
+
+  <span id="score">{{ post.points }} </span> points (<span id="total_votes">{{post.total_votes}}</span>) by {{post.poster.username}} {{ post.created|post_age }} | <a href="{% url 'post_detail' post.slug %}"> {{comment_count | comment_pluralize}} </a>
+</p> 

@@ -13,6 +13,8 @@
     <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
     
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fluent_comments/css/ajaxcomments.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}fluent_comments/js/ajaxcomments.js"></script>
   </head>
   <body>
     
@@ -26,7 +28,7 @@
 	    <a href="/"><img src="{% static "img/y18.gif" %}"></a>
 	  </div>
 	  <div id="title"  class="pull-left"> 
-	    <a href="#">{% block title %}Hacker News{% endblock %}</a>
+	    <a href="/">{% block title %}Hacker News{% endblock %}</a>
 	  </div>
 	  <div id="login" class="pull-right"> 
 	    {% include "includes/auth.html" %}

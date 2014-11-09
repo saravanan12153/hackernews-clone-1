@@ -13,6 +13,9 @@ from fluent_comments import appsettings
 import json
 import sys
 
+import logging
+logger = logging.getLogger("blabla")
+
 if sys.version_info[0] >= 3:
     long = int
 
@@ -97,13 +100,20 @@ def post_comment_ajax(request, using=None):
         if response is False:
             return CommentPostBadRequest("comment_will_be_posted receiver {0} killed the comment".format(receiver.__name__))
 
-    # Save the comment and signal that it was saved
+    # Save the comment and signal that it was saved.
     comment.save()
-    signals.comment_was_posted.send(
-        sender  = comment.__class__,
-        comment = comment,
-        request = request
-    )
+
+    #try:
+    signals.comment_was_posted.send (
+	    sender  = comment.__class__,
+	    comment = comment,
+	    request = request
+	)
+
+	
+    #except Exception as e:
+	#logger.exception("bunbun")
+	#print e
 
     return _ajax_result(request, form, "post", comment, object_id=object_pk)
 

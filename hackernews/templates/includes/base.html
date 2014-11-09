@@ -4,6 +4,7 @@
 <html>
   <head>
     <title>{% block head_title %}Hacker news{% endblock %}</title>
+
     <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
     
     <link rel="stylesheet" type="text/css"  href="{% static "libs/bootstrap/bootstrap.css" %}">                       
@@ -12,7 +13,8 @@
     <script type="text/javascript" src="{% static "libs/jquery/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
-    
+    {% block extra_js %}{% endblock %}
+    {% block extra_css %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fluent_comments/css/ajaxcomments.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}fluent_comments/js/ajaxcomments.js"></script>
   </head>

@@ -50,3 +50,6 @@ LOGIN_REDIRECT_URL = '/'
 # COMMENTS_APP = 'threadedcomments'
 FLUENT_COMMENTS_EXCLUDE_FIELDS = ('name', 'email', 'url', 'title')
 COMMENTS_APP = 'fluent_comments'
+
+
+INTERNAL_IPS = ('127.0.0.1',)

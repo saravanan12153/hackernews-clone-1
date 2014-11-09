@@ -30,7 +30,7 @@ class Post(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-	return 'post', (), {'slug': self.slug}
+	return 'post_detail', (), {'slug': self.slug}
 	
     def save(self):
 	#super(Post, self).save()

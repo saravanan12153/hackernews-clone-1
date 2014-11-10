@@ -63,6 +63,24 @@ a:link {
     font-weight: bold;
   }
 }
+
+/*********** login ************/
+#login {
+  ul {
+    list-style:none;
+
+    li {
+      display: inline;
+    }
+  }
+
+  a.user_name {
+    padding-right: 5px;
+    border-right: 1px solid black;
+    color: rgb(60, 150, 60);
+  }
+}
+
 /*********** main ************/
 
 /*********** list ************/
